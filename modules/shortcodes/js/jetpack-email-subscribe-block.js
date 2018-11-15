@@ -8,19 +8,20 @@ const el = wp.element.createElement,
 	__ = wp.i18n.__;
 
 const fields = [
-	{ id: 'title', label: __( 'Title' ) },
-	{ id: 'email_placeholder', label: __( 'Placeholder' ) },
-	{ id: 'submit_label', label: __( 'Submit button label' ) },
-	{ id: 'consent_text', label: __( 'Consent text' ) },
-	{ id: 'processing_label', label: __( '"Processing" status message' ) },
-	{ id: 'success_label', label: __( 'Success status message' ) },
-	{ id: 'error_label', label: __( 'Error status message' ) },
+	{ id: 'title', label: __( 'Title', 'jetpack' ) },
+	{ id: 'email_placeholder', label: __( 'Placeholder', 'jetpack' ) },
+	{ id: 'submit_label', label: __( 'Submit button label', 'jetpack' ) },
+	{ id: 'consent_text', label: __( 'Consent text', 'jetpack' ) },
+	{ id: 'processing_label', label: __( '"Processing" status message', 'jetpack' ) },
+	{ id: 'success_label', label: __( 'Success status message', 'jetpack' ) },
+	{ id: 'error_label', label: __( 'Error status message', 'jetpack' ) },
 ];
 
 registerBlockType( 'jetpack/email-subscribe', {
-	title: __( 'Email Subscribe' ),
+	title: __( 'Email Subscribe (Jetpack)', 'jetpack' ),
 	icon: 'email',
-	category: 'widgets',
+	category: 'jetpack',
+	keywords: [ __( 'email', 'jetpack' ), __( 'mailchimp', 'jetpack' ), 'jetpack' ],
 
 	edit: function( props ) {
 		return [
