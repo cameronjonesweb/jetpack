@@ -50,10 +50,10 @@ registerBlockType( 'jetpack/email-subscribe', {
 	save: function( props ) {
 		var attrs = '';
 		if ( props.attributes ) {
-			attrs = ' ' + props.attributes.filter( function( element ) {
-				return element;
-			} ).map( function( value, key ) {
-				return key + '="' + value.replace( '"', "'" ) + '"';
+			attrs = ' ' + Object.keys( props.attributes ).filter( function( key ) {
+				return props.attributes[ key ];
+			} ).map( function( key ) {
+				return key + '="' + props.attributes[ key ].replace( '"', "'" ) + '"';
 			} ).join( ' ' );
 		}
 		return '[jetpack-email-subscribe' + attrs + ']';
