@@ -20,7 +20,7 @@ const fields = [
 registerBlockType( 'jetpack/email-subscribe', {
 	title: __( 'Email Subscribe (Jetpack)', 'jetpack' ),
 	icon: 'email',
-	category: 'jetpack',
+	category: 'widgets',
 	keywords: [ __( 'email', 'jetpack' ), __( 'mailchimp', 'jetpack' ), 'jetpack' ],
 
 	edit: function( props ) {
