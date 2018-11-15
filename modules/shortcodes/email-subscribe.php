@@ -66,7 +66,6 @@ class Jetpack_Email_Subscribe {
 				Jetpack::get_file_url_for_environment( '_inc/build/shortcodes/js/jetpack-email-subscribe-block.min.js', 'modules/shortcodes/js/jetpack-email-subscribe-block.js' ),
 				array( 'wp-blocks', 'wp-element', 'wp-components', 'wp-editor' )
 			);
-			add_action( 'enqueue_block_assets', array( $this, 'enqueue_css' ) );
 
 			register_block_type( 'jetpack/email-subscribe', array(
 				'attributes' => array(
@@ -96,6 +95,7 @@ class Jetpack_Email_Subscribe {
 					),
 				),
 				'editor_script'   => 'jetpack-email-subscribe-block',
+				'style' => 'jetpack-email-subscribe',
 				'render_callback' => array( $this, 'parse_shortcode' ),
 			) );
 		}
@@ -115,11 +115,6 @@ class Jetpack_Email_Subscribe {
 		return Jetpack_Options::get_option( 'id' );
 	}
 
-	public function enqueue_css() {
-		if ( ! wp_style_is( 'jetpack-email-subscribe', 'enqueue' ) ) {
-			wp_enqueue_style( 'jetpack-email-subscribe' );
-		}
-	}
 
 	public function parse_shortcode( $attrs ) {
 		// We allow for overriding the presentation labels.
@@ -144,7 +139,9 @@ class Jetpack_Email_Subscribe {
 			wp_enqueue_script( 'jetpack-email-subscribe' );
 		}
 
-		$this->enqueue_css();
+		if ( ! wp_style_is( 'jetpack-email-subscribe', 'enqueue' ) ) {
+			wp_enqueue_style( 'jetpack-email-subscribe' );
+		}
 
 		wp_add_inline_script(
 			'jetpack-email-subscribe',
