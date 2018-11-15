@@ -1,7 +1,6 @@
 /* global wp */
 /* jshint esversion: 5, es3:false */
 const el = wp.element.createElement,
-	RawHTML = wp.element.RawHTML,
 	registerBlockType = wp.blocks.registerBlockType,
 	ServerSideRender = wp.components.ServerSideRender,
 	TextControl = wp.components.TextControl,
@@ -49,12 +48,14 @@ registerBlockType( 'jetpack/email-subscribe', {
 
 	// We will generate shortcode as a fallback, so that this works even if gutenberg does not.
 	save: function( props ) {
-		const attributes = props.attributes.filter( function( element ) {
-			return element;
-		} ).map( function( value, key ) {
-			return key + '="' + value.replace( '"', "'" ) + '"';
-		} ).join( ' ' );
-		const shortcode = '[jetpack-email-subscribe' + attributes ? ' ' + attributes : '' + ']';
-		return el( RawHTML, {}, shortcode );
+		let attributes = '';
+		if ( props.attributes ) {
+			attributes = ' ' + props.attributes.filter( function( element ) {
+				return element;
+			} ).map( function( value, key ) {
+				return key + '="' + value.replace( '"', "'" ) + '"';
+			} ).join( ' ' );
+		}
+		return '[jetpack-email-subscribe' + attributes + ']';
 	},
 } );
