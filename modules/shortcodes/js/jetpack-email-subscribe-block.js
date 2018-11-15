@@ -23,26 +23,26 @@ registerBlockType( 'jetpack/email-subscribe', {
 	category: 'widgets',
 
 	edit: function( props ) {
-		const edit_controls = fields.map( function( field ) {
-			return el( InspectorControls, {},
-				el( TextControl, {
-					label: field.label,
-					value: props.attributes[ field.id ],
-					onChange: function( value ) {
-						const newVal = {};
-						newVal[ field.id ] = value;
-						props.setAttributes( newVal );
-					},
-				} )
-			);
-		} );
-
 		return [
 			el( ServerSideRender, {
 				block: 'jetpack/email-subscribe',
 				attributes: props.attributes,
 			} ),
-		].concat( edit_controls );
+			el( InspectorControls, {},
+				fields.map( function( field ) {
+					return el( TextControl, {
+						label: field.label,
+						key: field.id,
+						value: props.attributes[ field.id ],
+						onChange: function( value ) {
+							const newVal = {};
+							newVal[ field.id ] = value;
+							props.setAttributes( newVal );
+						},
+					} );
+				} )
+			)
+		];
 	},
 
 	// We're going to be rendering in PHP, so save() can just return null.
