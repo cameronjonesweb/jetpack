@@ -48,14 +48,14 @@ registerBlockType( 'jetpack/email-subscribe', {
 
 	// We will generate shortcode as a fallback, so that this works even if gutenberg does not.
 	save: function( props ) {
-		let attributes = '';
+		var attrs = '';
 		if ( props.attributes ) {
-			attributes = ' ' + props.attributes.filter( function( element ) {
+			attrs = ' ' + props.attributes.filter( function( element ) {
 				return element;
 			} ).map( function( value, key ) {
 				return key + '="' + value.replace( '"', "'" ) + '"';
 			} ).join( ' ' );
 		}
-		return '[jetpack-email-subscribe' + attributes + ']';
+		return '[jetpack-email-subscribe' + attrs + ']';
 	},
 } );
