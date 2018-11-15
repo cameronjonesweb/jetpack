@@ -4,20 +4,21 @@ const el = wp.element.createElement,
 	registerBlockType = wp.blocks.registerBlockType,
 	ServerSideRender = wp.components.ServerSideRender,
 	TextControl = wp.components.TextControl,
-	InspectorControls = wp.editor.InspectorControls;
+	InspectorControls = wp.editor.InspectorControls,
+	__ = wp.i18n.__;
 
 const fields = [
-	{ id: 'title', label: 'Title' },
-	{ id: 'email_placeholder', label: 'Placeholder' },
-	{ id: 'submit_label', label: 'Submit button label' },
-	{ id: 'consent_text', label: 'Consent text' },
-	{ id: 'processing_label', label: '"Processing" status message' },
-	{ id: 'success_label', label: 'Success status message' },
-	{ id: 'error_label', label: 'Error status message' },
+	{ id: 'title', label: __( 'Title' ) },
+	{ id: 'email_placeholder', label: __( 'Placeholder' ) },
+	{ id: 'submit_label', label: __( 'Submit button label' ) },
+	{ id: 'consent_text', label: __( 'Consent text' ) },
+	{ id: 'processing_label', label: __( '"Processing" status message' ) },
+	{ id: 'success_label', label: __( 'Success status message' ) },
+	{ id: 'error_label', label: __( 'Error status message' ) },
 ];
 
 registerBlockType( 'jetpack/email-subscribe', {
-	title: 'Email Subscribe Block',
+	title: __( 'Email Subscribe' ),
 	icon: 'email',
 	category: 'widgets',
 
